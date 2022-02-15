@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Collections;
+using Windows.UI.Xaml.Documents;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -38,7 +40,22 @@ namespace countdown_csharp
 
         private void UpdateTimeLeft(object sender, object args)
         {
-            outputBox.Text = String.Format("{0:0.00}", mainInputHandler.getTimeLeft()) + " in seconds";
+            outPutGrid.Children.Clear();
+
+            ArrayList timeComponents = new ArrayList();
+
+            string[] units = new string[3] { "seconds", "minutes", "hours" };
+
+            foreach (var unit in units)
+            {
+                timeComponents.Add(new timeComponent(unit, mainInputHandler));
+            }
+
+            foreach (timeComponent timeComponent in timeComponents)
+            {
+                outPutGrid.Children.Add(timeComponent.GetTextBlock());
+            }
+            
         }
     }
 }
