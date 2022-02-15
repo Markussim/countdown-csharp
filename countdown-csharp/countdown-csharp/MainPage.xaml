@@ -9,6 +9,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button Name="puckoKnapp" Content="Hello World!" Margin="688,437,0,0" VerticalAlignment="Top" Click="Button_Click"/>
+        <StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,20,0,20">
+                <TextBox x:Name="timeInput"
+                     Header="Enter time:" PlaceholderText="HH:MM"
+                     Width="300" HorizontalAlignment="Left" TextChanged="formatText" MaxLength="5"/>
+                <TextBlock x:Name="outputBox"></TextBlock>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </Page>

@@ -9,7 +9,7 @@
   <Identity
     Name="87c9a78a-87d1-4916-99f7-ef18e77e204c"
     Publisher="CN=marku"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="87c9a78a-87d1-4916-99f7-ef18e77e204c" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
@@ -38,7 +38,7 @@
         Description="countdown-csharp"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
-        <uap:SplashScreen Image="Assets\SplashScreen.png" />
+        <uap:SplashScreen Image="Assets\SplashScreen.png" a:Optional="true" xmlns:a="http://schemas.microsoft.com/appx/manifest/uap/windows10/5" />
       </uap:VisualElements>
     </Application>
   </Applications>

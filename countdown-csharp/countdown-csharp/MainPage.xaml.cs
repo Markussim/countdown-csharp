@@ -23,16 +23,22 @@ namespace countdown_csharp
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private int count = 0;
+        private InputHandler mainInputHandler = new InputHandler();
         public MainPage()
         {
             this.InitializeComponent();
+            CompositionTarget.Rendering += UpdateTimeLeft;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void formatText(object sender, RoutedEventArgs e)
         {
-            puckoKnapp.Content = "Hello x" + count;
-            count++;
+            timeInput.Text = mainInputHandler.formatText(timeInput.Text);
+            timeInput.Select(timeInput.Text.Length, 0);
+        }
+
+        private void UpdateTimeLeft(object sender, object args)
+        {
+            outputBox.Text = String.Format("{0:0.00}", mainInputHandler.getTimeLeft()) + " in seconds";
         }
     }
 }
