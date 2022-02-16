@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Collections;
 using Windows.UI.Xaml.Documents;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,6 +27,7 @@ namespace countdown_csharp
     public sealed partial class MainPage : Page
     {
         private InputHandler mainInputHandler = new InputHandler();
+        private bool timeUp = true;
         public MainPage()
         {
             this.InitializeComponent();
@@ -40,11 +42,14 @@ namespace countdown_csharp
 
         private void UpdateTimeLeft(object sender, object args)
         {
-            if(timeInput.Text.Length < 5)
+            if (timeInput.Text.Length < 5)
             {
                 outPutBox.Children.Clear();
-            } else if(mainInputHandler.getTimeLeft() > 0)
+                timeUp = true;
+            }
+            else if (mainInputHandler.getTimeLeft() > 0)
             {
+                timeUp = false;
                 ArrayList timeComponents = new ArrayList();
 
                 string[] units = new string[] { "seconds", "minutes", "hours", "days" };
@@ -69,12 +74,22 @@ namespace countdown_csharp
                         timeComponent.UpdateTime(outPutBox);
                     }
                 }
-            } else
+            }
+            else
             {
                 outPutBox.Children.Clear();
+                if(!timeUp)
+                {
+                    new ToastContentBuilder()
+                        .AddText("Andrew sent you a picture")
+                        .AddText("Check this out, The Enchantments in Washington!")
+                        .Show();
+                }
+
+                timeUp = true;
             }
-            
-            
+
+
         }
     }
 }
