@@ -40,21 +40,40 @@ namespace countdown_csharp
 
         private void UpdateTimeLeft(object sender, object args)
         {
-            outPutGrid.Children.Clear();
-
-            ArrayList timeComponents = new ArrayList();
-
-            string[] units = new string[3] { "seconds", "minutes", "hours" };
-
-            foreach (var unit in units)
+            if(timeInput.Text.Length < 5)
             {
-                timeComponents.Add(new timeComponent(unit, mainInputHandler));
-            }
-
-            foreach (timeComponent timeComponent in timeComponents)
+                outPutBox.Children.Clear();
+            } else if(mainInputHandler.getTimeLeft() > 0)
             {
-                outPutGrid.Children.Add(timeComponent.GetTextBlock());
+                ArrayList timeComponents = new ArrayList();
+
+                string[] units = new string[] { "seconds", "minutes", "hours", "days" };
+
+                foreach (var unit in units)
+                {
+                    timeComponents.Add(new timeComponent(unit, mainInputHandler));
+                }
+
+                if (outPutBox.Children.Count == 0)
+                {
+                    outPutBox.Children.Clear();
+                    foreach (timeComponent timeComponent in timeComponents)
+                    {
+                        outPutBox.Children.Add(timeComponent.GetTextBlock());
+                    }
+                }
+                else
+                {
+                    foreach (timeComponent timeComponent in timeComponents)
+                    {
+                        timeComponent.UpdateTime(outPutBox);
+                    }
+                }
+            } else
+            {
+                outPutBox.Children.Clear();
             }
+            
             
         }
     }
