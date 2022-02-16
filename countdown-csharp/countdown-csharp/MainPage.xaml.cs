@@ -81,8 +81,8 @@ namespace countdown_csharp
                 if(!timeUp)
                 {
                     new ToastContentBuilder()
-                        .AddText("Andrew sent you a picture")
-                        .AddText("Check this out, The Enchantments in Washington!")
+                        .AddText("Time is up!")
+                        .AddText("Click to set a new time")
                         .Show();
                 }
 
